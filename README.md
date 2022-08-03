@@ -1,5 +1,9 @@
 # Regexle
 
+A game where you need to guess the RegEx pattern based on its matches.
+
+Avoid reading the `consts.ts` file if you don't want to know the solutions.
+
 ### Usage
 
 Start the project:
