@@ -5,11 +5,14 @@ import { useState } from "preact/hooks";
 import { tw } from "@twind";
 
 import { GameEnded, Pattern } from "../utils/context.ts";
-import { PATTERNS } from "../utils/consts.ts";
+import { PATTERN_FLAGS, PATTERNS } from "../utils/consts.ts";
 import SentenceGuessing from "./SenteceGuessing.tsx";
 import PatternGuessing from "./PatternGuessing.tsx";
 
-const PATTERN = PATTERNS[Math.floor(Math.random() * PATTERNS.length)];
+const PATTERN = new RegExp(
+  PATTERNS[Math.floor(Math.random() * PATTERNS.length)],
+  PATTERN_FLAGS,
+);
 
 export default function RegexleGame(): JSX.Element {
   const [foundPattern, setFoundPattern] = useState<boolean>(false);
