@@ -36,7 +36,7 @@ export default function GuessList(
     <div class={tw`flex flex-col`}>
       {header && <h2 class={tw`self-center`}>{header}</h2>}
       <div
-        class={tw`h-2/3 w-1/2 flex flex-col justify-center ites-center gap-3`}
+        class={tw`h-2/3 flex flex-col justify-center ites-center gap-3 p-0.5`}
       >
         {/* TODO: Use a non-hardcoded height */}
         <ul class={tw`flex flex-col gap-2 overflow-y-auto h-96`}>
