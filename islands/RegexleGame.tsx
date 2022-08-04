@@ -1,6 +1,6 @@
 /** @jsx h */
 
-import { h, JSX } from "preact";
+import { createRef, h, JSX } from "preact";
 import { useState } from "preact/hooks";
 
 import { GameEnded, Pattern } from "../utils/context.ts";
@@ -16,19 +16,25 @@ const PATTERN = new RegExp(
 
 export default function RegexleGame(): JSX.Element {
   const [foundPattern, setFoundPattern] = useState<boolean>(false);
+  const gameEndMessage = createRef<HTMLDivElement>();
+
+  const endGame = () => {
+    setFoundPattern(true);
+    gameEndMessage.current!.scrollIntoView({ block: "center" });
+  };
 
   return (
     <div>
       <Pattern.Provider value={PATTERN}>
         <GameEnded.Provider value={foundPattern}>
-          {foundPattern && <GameEndMessage />}
+          <div ref={gameEndMessage}>
+            {foundPattern && <GameEndMessage />}
+          </div>
 
           <SentenceGuessing />
 
           <PatternGuessing
-            onCorrectGuess={() => {
-              setFoundPattern(true);
-            }}
+            onCorrectGuess={endGame}
           />
         </GameEnded.Provider>
       </Pattern.Provider>
