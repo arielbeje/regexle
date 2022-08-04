@@ -2,12 +2,12 @@
 
 import { h, JSX } from "preact";
 import { useState } from "preact/hooks";
-import { tw } from "@twind";
 
 import { GameEnded, Pattern } from "../utils/context.ts";
 import { PATTERN_FLAGS, PATTERNS } from "../utils/consts.ts";
 import SentenceGuessing from "./SenteceGuessing.tsx";
 import PatternGuessing from "./PatternGuessing.tsx";
+import { GameEndMessage } from "../components/GameEndMessage.tsx";
 
 const PATTERN = new RegExp(
   PATTERNS[Math.floor(Math.random() * PATTERNS.length)],
@@ -21,14 +21,7 @@ export default function RegexleGame(): JSX.Element {
     <div>
       <Pattern.Provider value={PATTERN}>
         <GameEnded.Provider value={foundPattern}>
-          {foundPattern && (
-            <div class={tw`p-5`}>
-              <h1>
-                You have found the pattern: <pre>{PATTERN.source}</pre>
-              </h1>
-              <p>Feel free to reload the page and keep playing!</p>
-            </div>
-          )}
+          {foundPattern && <GameEndMessage />}
 
           <SentenceGuessing />
 
