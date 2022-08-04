@@ -7,7 +7,7 @@ import { Pattern } from "../utils/context.ts";
 export function GameEndMessage(): JSX.Element {
   const pattern = useContext(Pattern);
   return (
-    <div class={tw`p-5`}>
+    <div class={tw`bg-green-200 p-5`}>
       <h1>
         You have found the pattern: <pre>{pattern.source}</pre>
       </h1>
