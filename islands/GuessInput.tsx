@@ -27,7 +27,7 @@ export default function GuessInput(
     currentTarget,
   }: JSX.TargetedEvent<HTMLInputElement, Event>) => {
     // TODO: Validate characters are alphanumeric + all lowercase
-    setGuess(currentTarget.value);
+    setGuess(currentTarget.value.toLowerCase());
   };
 
   const handleInputKeyDown = (event: KeyboardEvent) => {
