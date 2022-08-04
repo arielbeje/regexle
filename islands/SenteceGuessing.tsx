@@ -41,11 +41,13 @@ export default function SentenceGuessing() {
           guessType={GUESS_TYPE.REGEX_MATCHING}
         />
         </div>
-        <GuessList
-          header="Non-matching sentences"
-          guesses={nonMatchingGuesses}
-          guessType={GUESS_TYPE.REGEX_MATCHING}
-        />
+        <div class={tw`w-1/2`}>
+          <GuessList
+            header="Non-matching sentences"
+            guesses={nonMatchingGuesses}
+            guessType={GUESS_TYPE.REGEX_MATCHING}
+          />
+        </div>
       </div>
     </Fragment>
   );
