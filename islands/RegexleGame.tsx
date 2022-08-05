@@ -9,6 +9,7 @@ import {
   PATTERN_FLAGS,
   PATTERNS,
   STORAGE_LAST_SOLVED_DAY,
+  LOCALSTORAGE_AVAILABLE,
 } from "../utils/consts.ts";
 import SentenceGuessing from "./SenteceGuessing.tsx";
 import PatternGuessing from "./PatternGuessing.tsx";
@@ -25,16 +26,21 @@ const PATTERN = new RegExp(
 export default function RegexleGame(): JSX.Element {
   const [foundPattern, setFoundPattern] = useState<boolean>(false);
   const gameEndMessage = createRef<HTMLDivElement>();
-  const lastSolvedDay = localStorage.getItem(STORAGE_LAST_SOLVED_DAY);
+  let lastSolvedDay = null;
 
-  if (lastSolvedDay && Number.parseInt(lastSolvedDay) === TODAY_ID) {
-    setFoundPattern(true);
+  if (LOCALSTORAGE_AVAILABLE) {
+    lastSolvedDay = window.localStorage.getItem(STORAGE_LAST_SOLVED_DAY);
+    if (lastSolvedDay && Number.parseInt(lastSolvedDay) === TODAY_ID) {
+      setFoundPattern(true);
+    }
   }
 
   const endGame = () => {
     setFoundPattern(true);
     gameEndMessage.current!.scrollIntoView({ block: "center" });
-    localStorage.setItem(STORAGE_LAST_SOLVED_DAY, TODAY_ID.toString());
+    if (LOCALSTORAGE_AVAILABLE) {
+      window.localStorage.setItem(STORAGE_LAST_SOLVED_DAY, TODAY_ID.toString());
+    }
   };
 
   return (
