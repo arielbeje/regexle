@@ -9,9 +9,9 @@ export function GameEndMessage(): JSX.Element {
   return (
     <div class={tw`bg-green-200 p-5`}>
       <h1>
-        You have found the pattern: <pre>{pattern.source}</pre>
+        You have found today's pattern: <pre>{pattern.source}</pre>
       </h1>
-      <p>Feel free to reload the page and keep playing!</p>
+      <p>Come back tomorrow for another one!</p>
     </div>
   );
 }
